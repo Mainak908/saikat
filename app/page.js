@@ -84,25 +84,43 @@ const ShopByBike = () => (
 const Helmets = () => {
   const { setCartItem } = useContext(AuthContext);
   const addCart = (helmet) => {
-    setCartItem((prev) => [...prev, helmet]);
+    setCartItem((prev) => {
+      // Check if the item already exists in the cart
+      const itemExists = prev.find((item) => item.id === helmet.id);
+
+      if (itemExists) {
+        // Update the quantity of the existing item
+        return prev.map((item) =>
+          item.id === helmet.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      // If the item doesn't exist, add it to the cart with quantity 1
+      return [...prev, { ...helmet, quantity: 1 }];
+    });
   };
+
   return (
     <section className="helmets">
       <h1 className="text-black text-xl">𝐎𝐮𝐫 𝐇𝐞𝐥𝐦𝐞𝐭𝐬</h1>
       <div className="helmet-container">
         {[
-          { src: "helmate1.png", name: "Srm", price: 100, quantity: 1 },
+          { src: "helmate1.png", name: "Srm", price: 100, quantity: 1, id: 1 },
           {
             src: "helmate2.png",
             name: "Saber Single Colors Helmet",
             price: 120,
             quantity: 1,
+            id: 2,
           },
           {
             src: "helmate3.png",
             name: "Saber X-Sport Helmet",
             price: 150,
             quantity: 1,
+            id: 3,
           },
         ].map((helmet, index) => (
           <div className="helmet-item" key={index}>
