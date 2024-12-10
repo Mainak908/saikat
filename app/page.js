@@ -7,7 +7,7 @@ import "./globals.css";
 import { AuthContext } from "./layout";
 
 const Header = () => (
-  <header className="header fixed w-screen">
+  <header className="header fixed w-screen z-50">
     <div className="logo">
       <span className="logo-text">motox-part</span>
     </div>
@@ -19,16 +19,20 @@ const Header = () => (
       <button className="search-button">🔍</button>
     </div>
     <div className="user-options flex">
-      <Button variant="outline">SignIn</Button>
+      <Link href={"/signin"}>
+        <Button variant="outline">SignIn</Button>
+      </Link>
 
-      <Button variant="outline">SignUp</Button>
+      <Link href={"/signin"}>
+        <Button variant="outline">SignUp</Button>
+      </Link>
     </div>
     <CartIcon />
   </header>
 );
 
 const NavBar = () => (
-  <nav className="navbar fixed w-screen mt-[62px]">
+  <nav className="navbar fixed w-screen mt-[62px] z-50">
     <a href="#">Home</a>
     <a href="#">All Collections</a>
     <a href="#">Shop By Bike ▼</a>
@@ -208,10 +212,10 @@ const CartIcon = () => {
 };
 const App = () => {
   return (
-    <div>
+    <div className="">
       <Header />
       <NavBar />
-      <div>
+      <div className="pt-[105px]">
         <img src="jaydeb.png" alt="" className="h-full w-full" />
         <div>
           <i className="fa-brands fa-facebook"></i>

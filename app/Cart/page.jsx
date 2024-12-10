@@ -48,29 +48,39 @@ const CartPage = () => {
                   src={item.src}
                   alt={item.name}
                   className="w-20 h-20 rounded-lg object-cover"
+                  key={item.id}
                 />
                 <div className="ml-4" key={item.id}>
-                  <h2 className="text-lg font-semibold">{item.name}</h2>
-                  <p className="text-gray-600">${item.price.toFixed(2)}</p>
+                  <h2 className="text-lg font-semibold" key={item.id}>
+                    {item.name}
+                  </h2>
+                  <p className="text-gray-600" key={item.id}>
+                    ${item.price.toFixed(2)}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-4" key={item.id}>
                 <button
                   onClick={() => updateQuantity(item.id, "decrement")}
                   className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  key={item.id}
                 >
                   -
                 </button>
-                <span className="font-medium">{item.quantity}</span>
+                <span className="font-medium" key={item.id}>
+                  {item.quantity}
+                </span>
                 <button
                   onClick={() => updateQuantity(item.id, "increment")}
                   className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                  key={item.id}
                 >
                   +
                 </button>
                 <button
                   onClick={() => removeItem(item.id)}
                   className="text-red-500 hover:underline"
+                  key={item.id}
                 >
                   Remove
                 </button>
