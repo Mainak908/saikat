@@ -1,10 +1,84 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Link from "next/link";
 import { useContext } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 import "./globals.css";
 import { AuthContext } from "./layout";
+
+const bikes = [
+  {
+    id: 1,
+    name: "Bajaj",
+    description: "Affordable and reliable motorcycles for daily use.",
+    price: 1200,
+    image: "bajaj.png",
+  },
+  {
+    id: 2,
+    name: "BMW",
+    description: "Premium bikes with advanced features and luxury designs.",
+    price: 15000,
+    image: "bmw.png",
+  },
+  {
+    id: 3,
+    name: "Hero",
+    description: "Fuel-efficient bikes designed for the everyday rider.",
+    price: 800,
+    image: "hero.png",
+  },
+  {
+    id: 4,
+    name: "Honda",
+    description: "Innovative and durable motorcycles with excellent mileage.",
+    price: 1000,
+    image: "honda.png",
+  },
+  {
+    id: 5,
+    name: "Benelli",
+    description:
+      "Stylish bikes with a perfect balance of power and performance.",
+    price: 4000,
+    image: "benelli.png",
+  },
+  {
+    id: 6,
+    name: "Kawasaki",
+    description: "High-performance sports bikes for thrill-seekers.",
+    price: 8000,
+    image: "kawasaki.png",
+  },
+  {
+    id: 7,
+    name: "KTM",
+    description: "Lightweight bikes with superior handling and power.",
+    price: 5000,
+    image: "ktm.png",
+  },
+  {
+    id: 8,
+    name: "Yamaha",
+    description: "Reliable bikes with a legacy of innovation and speed.",
+    price: 3000,
+    image: "yamaha.png",
+  },
+  {
+    id: 9,
+    name: "TVS",
+    description: "Budget-friendly bikes with robust build quality.",
+    price: 900,
+    image: "tvs.png",
+  },
+];
 
 const Header = () => (
   <header className="header fixed w-screen z-50">
@@ -48,39 +122,23 @@ const NavBar = () => (
 const ShopByBike = () => (
   <section className="shop-by-bike">
     <h2>𝐒𝐡𝐨𝐩 𝐁𝐲 𝐁𝐢𝐤𝐞</h2>
-    <div className="bike-grid">
-      <div className="carousel">
-        <button className="btn left" id="prevBtn">
-          &#9664;
-        </button>
-        <div className="carousel-wrapper">
-          <div className="carousel-content">
-            {[
-              "bajaj.png",
-              "bmw.png",
-              "hero.png",
-              "honda.png",
-              "benelli.png",
-              "kawasaki.png",
-              "ktm.png",
-              "yamaha.png",
-              "tvs.png",
-            ].map((bike, index) => (
-              <Link className="item" key={index} href={"/Parts"}>
-                <img src={bike} alt={bike.split(".")[0].toUpperCase()} />
-                <p className="text-black">{bike.split(".")[0].toUpperCase()}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-        <button className="btn right" id="nextBtn">
-          &#9654;
-        </button>
-      </div>
-    </div>
+
+    <Carousel className="w-[1290px] mx-auto scrollbar-hide">
+      <CarouselContent className="">
+        {bikes.map((bike, index) => (
+          <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/5">
+            <Link className="item" key={index} href={`/Parts/?bike=${bike.id}`}>
+              <img src={bike.image} alt="" />
+              <p className="text-black">{bike.name}</p>
+            </Link>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
   </section>
 );
-
 const Helmets = () => {
   const { setCartItem } = useContext(AuthContext);
   const addCart = (helmet) => {
@@ -117,7 +175,7 @@ const Helmets = () => {
           },
           {
             src: "helmate3.png",
-            name: "Saber X-Sport Helmet",
+            name: "Saber X-Sport color Helmet",
             price: 150,
             quantity: 1,
             id: 3,
