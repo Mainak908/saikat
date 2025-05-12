@@ -212,6 +212,7 @@ html {
 .part {
   display: flex;
 }
+
 /* General Footer Styling */
 .footer {
   background-color: #000;
@@ -482,6 +483,7 @@ html {
     font-size: 12px;
   }
 }
+
 
 /* Section for helmets */
 .helmets {
